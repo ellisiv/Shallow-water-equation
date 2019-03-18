@@ -64,7 +64,7 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     v = np.zeros((M + 1, N + 1))
 
     for m in range(M):
-        h[m, 0] = h_initial(m * dx, x0, xf)
+        h[m, 0] = h_step(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
     print("Første gang \n",h[:, 0])
     for n in range(N):
@@ -114,8 +114,8 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
                 v[m, n + 1] = 1/2 * (v[m + 1, n] + v[m - 1, n]) - 1/2 * ((g * h[m + 1, n] + 1/2 * v[m + 1, n] ** 2) - (g * h[m - 1, n] + 1/2 * v[m - 1, n] ** 2)) * dt / dx
     return v, h
 
-x_steg = 100
-t_steg = 10000
+x_steg = 50
+t_steg = 50000
 
 #v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
 v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
