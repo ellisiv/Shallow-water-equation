@@ -32,7 +32,7 @@ def non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1):
     for m in range(M):
         h[m, 0] = h_step(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
-    print(h[:, 0])
+    print("Første gang \n",h[:, 0])
     for n in range(N):
         for m in range(M + 1):
             va = v[m, n]
@@ -46,8 +46,49 @@ def non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1):
             else:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m, n] - h[m - 1, n]) + ha * (v[m, n] - v[m - 1, n])) + 1 / 2 * dt / dx * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
                 v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m, n] - h[m-1, n]) + va * (v[m, n] - v[m - 1, n])) + 1 / 2 * dt / dx * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
+    print("Andre gang, n = 0 \n",h[:, 0])
+    print("n = 1 \n",h[:, 1])
+    print("n = 2 \n",h[:, 2])
+    print("n = 3 \n",h[:, 3])
+    print("n = 10 \n",h[:, 10])
+    print("n = 50 \n",h[:, 50])
+    print("n = 100 \n",h[:, 100])
+    print("n = 1000 \n",h[:, 1000])
     return h, v
 
+def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
+    g = 9.81
+    dx = (xf - x0)/M
+    dt = (tf - t0)/N
+    h = np.zeros((M + 1, N + 1))
+    v = np.zeros((M + 1, N + 1))
+
+    for m in range(M):
+        h[m, 0] = h_initial(m * dx, x0, xf)
+        v[m, 0] = u_initial(m * dx, x0, xf)
+    print("Første gang \n",h[:, 0])
+    for n in range(N):
+        for m in range(M + 1):
+            va = v[m, n]
+            ha = h[m, n]
+            if m == 0:
+                h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m + 1, n] - h[m + 1, n]) + ha * (v[m + 1, n] + v[m + 1, n])) + 1 / 2 * (dt / dx) **2 * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
+                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m + 1, n] - h[m - 1, n]) + va * (v[m + 1, n] + v[m + 1, n])) + 1 / 2 * (dt / dx) **2 * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
+            elif m == M:
+                h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m - 1, n] - h[m - 1, n]) + ha * (-v[m - 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) **2 * ((va ** 2 + ha * g) * (h[m - 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (- v[m - 1, n] - 2 * v[m, n] + v[m - 1, n]))
+                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m - 1, n] - h[m - 1, n]) + va * (-v[m - 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) **2 * (2 * g * va * (h[m - 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (-v[m - 1, n] - 2 * v[m, n] + v[m - 1, n]))
+            else:
+                h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m + 1, n] - h[m - 1, n]) + ha * (v[m + 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) ** 2 * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
+                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m + 1, n] - h[m-1, n]) + va * (v[m + 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) ** 2 * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
+    print("Andre gang, n = 0 \n",h[:, 0])
+    print("n = 1 \n",h[:, 1])
+    print("n = 2 \n",h[:, 2])
+    print("n = 3 \n",h[:, 3])
+    print("n = 10 \n",h[:, 10])
+    print("n = 50 \n",h[:, 50])
+    print("n = 100 \n",h[:, 100])
+    #print("n = 1000 \n",h[:, 1000])
+    return h, v
 
 def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
     g = 9.81
@@ -76,7 +117,8 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
 x_steg = 100
 t_steg = 10000
 
-v, h = non_lin_LF(x_steg, t_steg, tf=10)
+#v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
+v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
 U = h
 
 
