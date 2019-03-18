@@ -90,6 +90,31 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     #print("n = 1000 \n",h[:, 1000])
     return h, v
 
+def non_lin_Wendroff_mod2(M, N, x0=0, xf=1, t0=0, tf=1): #Det er denne Johanne jobber på
+    g = 9.81
+    dx = (xf - x0)/M
+    dt = (tf - t0)/N
+    h = np.zeros((M + 1, N + 1))
+    v = np.zeros((M + 1, N + 1))
+
+    for m in range(M):
+        h[m, 0] = h_initial(m * dx, x0, xf)
+        v[m, 0] = u_initial(m * dx, x0, xf)
+    print("Første gang \n",h[:, 0])
+    for n in range(N):
+        for m in range(M + 1):
+            va = v[m, n]
+            ha = h[m, n]
+            if m == 0:
+                h[m, n + 1] = 1
+                v[m, n + 1] = 1
+            elif m == M:
+                h[m, n + 1] = 1
+                v[m, n + 1] = 1
+            else:
+                h[m, n + 1] = h[m,n] - (1/2)*(dt/dx)(h[m+1,n]*v[m+1,n]-h[m-1,n]*v[m-1,n]) + (1/2)*((dt/dx)**2*((1/2)*(v[m+1,n]+v[m,n])*(h[m+1,n]*v[m+1,n]-h[m,n]*v[m,n]))  -(1/2)*(v[m-1,n]+v[m,n])*(h[m,n]*v[m,n] - h[m-1,n]*v[m-1,n]))
+                v[m, n + 1] = 1
+    return h, v
 def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
     g = 9.81
     dx = (xf - x0) / M
@@ -118,7 +143,7 @@ x_steg = 100
 t_steg = 10000
 
 #v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
-v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+v, h = non_lin_LF(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
 U = h
 
 
@@ -140,7 +165,7 @@ def animate(i):
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=1000, interval=10, blit=True)
+                               frames=1000, interval=1000, blit=True)
 
 # save the animation as an mp4.  This requires ffmpeg or mencoder to be
 # installed.  The extra_args ensure that the x264 codec is used, so that
