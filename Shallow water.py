@@ -152,9 +152,6 @@ anim = animation.FuncAnimation(fig, animate, init_func=init,
 plt.show()
 
 
-def print_var(x):
-    print x
-
 
 
 
