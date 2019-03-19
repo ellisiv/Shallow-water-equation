@@ -10,13 +10,13 @@ from matplotlib import animation
 
 
 def h_initial(x, x0, xf):
-    return 2 * np.sin(x * np.pi)
+    return 2 * np.sin(x * np.pi) + 2
 
 def h_step(x, x0, xf):
     if x <= (x0 + xf) / 2:
-        return 1
+        return 2
     else:
-        return 0
+        return 1
 
 def u_initial(x, x0, xf):
     return 0
@@ -29,7 +29,7 @@ def non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1):
     h = np.zeros((M + 1, N + 1))
     v = np.zeros((M + 1, N + 1))
 
-    for m in range(M):
+    for m in range(M + 1):
         h[m, 0] = h_step(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
     print("Første gang \n",h[:, 0])
@@ -46,15 +46,8 @@ def non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1):
             else:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m, n] - h[m - 1, n]) + ha * (v[m, n] - v[m - 1, n])) + 1 / 2 * dt / dx * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
                 v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m, n] - h[m-1, n]) + va * (v[m, n] - v[m - 1, n])) + 1 / 2 * dt / dx * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
-    print("Andre gang, n = 0 \n",h[:, 0])
-    print("n = 1 \n",h[:, 1])
-    print("n = 2 \n",h[:, 2])
-    print("n = 3 \n",h[:, 3])
-    print("n = 10 \n",h[:, 10])
-    print("n = 50 \n",h[:, 50])
-    print("n = 100 \n",h[:, 100])
-    print("n = 1000 \n",h[:, 1000])
-    return h, v
+    
+    return v, h
 
 def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     g = 9.81
@@ -63,8 +56,8 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     h = np.zeros((M + 1, N + 1))
     v = np.zeros((M + 1, N + 1))
 
-    for m in range(M):
-        h[m, 0] = h_step(m * dx, x0, xf)
+    for m in range(M + 1):
+        h[m, 0] = h_initial(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
     print("Første gang \n",h[:, 0])
     for n in range(N):
@@ -80,15 +73,8 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
             else:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m + 1, n] - h[m - 1, n]) + ha * (v[m + 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) ** 2 * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
                 v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m + 1, n] - h[m-1, n]) + va * (v[m + 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) ** 2 * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] + v[m - 1, n]))
-    print("Andre gang, n = 0 \n",h[:, 0])
-    print("n = 1 \n",h[:, 1])
-    print("n = 2 \n",h[:, 2])
-    print("n = 3 \n",h[:, 3])
-    print("n = 10 \n",h[:, 10])
-    print("n = 50 \n",h[:, 50])
-    print("n = 100 \n",h[:, 100])
-    #print("n = 1000 \n",h[:, 1000])
-    return h, v
+    
+    return v, h
 
 def non_lin_Wendroff_mod2(M, N, x0=0, xf=1, t0=0, tf=1): #Det er denne Johanne jobber på
     g = 9.81
@@ -97,24 +83,28 @@ def non_lin_Wendroff_mod2(M, N, x0=0, xf=1, t0=0, tf=1): #Det er denne Johanne j
     h = np.zeros((M + 1, N + 1))
     v = np.zeros((M + 1, N + 1))
 
-    for m in range(M):
-        h[m, 0] = h_initial(m * dx, x0, xf)
+    for m in range(M + 1):
+        h[m, 0] = h_step(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
+        
     print("Første gang \n",h[:, 0])
     for n in range(N):
         for m in range(M + 1):
-            va = v[m, n]
-            ha = h[m, n]
             if m == 0:
-                h[m, n + 1] = 1
-                v[m, n + 1] = 1
+                h[m, n + 1] = h[m,n] - (1/2) * (dt/dx) * (h[m+1,n] * v[m+1,n] + h[m+1,n] * v[m+1,n]) + (1/2)*((dt/dx) **2 * ((1/2) * (v[m+1,n] + v[m,n]) * (h[m+1,n] * v[m+1,n] - h[m,n] * v[m,n]))  -(1/2) * (- v[m+1,n] + v[m,n]) * (h[m,n] * v[m,n] + h[m+1,n] * v[m+1,n]))
+                v[m, n + 1] = v[m,n] - (1/2) * (dt/dx) * (g * h[m+1,n] + (1/2) * v[m+1,n] ** 2 - (g * h[m+1,n] + (1/2) * v[m+1,n] **2)) + \
+                (1/2) * ((dt/dx) **2 * ((1/2)*(v[m+1,n] + v[m,n])*(g * h[m+1,n] + (1/2)*v[m+1,n] **2 - (g * h[m,n] + (1/2) * v[m,n] **2))) - ((1/2) * (-v[m+1,n] + v[m,n]) * (g * h[m,n] + (1/2)*v[m,n] **2 - (g * h[m+1,n] + (1/2) * v[m+1,n] **2))))
             elif m == M:
-                h[m, n + 1] = 1
-                v[m, n + 1] = 1
+                h[m, n + 1] = h[m,n] - (1/2) * (dt/dx) * (-h[m-1,n] * v[m-1,n] - h[m-1,n] * v[m-1,n]) + (1/2)*((dt/dx) **2 * ((1/2) * (-v[m-1,n] + v[m,n]) * (-h[m-1,n] * v[m-1,n] - h[m,n] * v[m,n]))  -(1/2) * (v[m-1,n] + v[m,n]) * (h[m,n] * v[m,n] - h[m-1,n] * v[m-1,n]))
+                v[m, n + 1] = v[m,n] - (1/2) * (dt/dx) * (g * h[m-1,n] + (1/2) * v[m-1,n] ** 2 - (g * h[m-1,n] + (1/2) * v[m-1,n] **2)) + \
+                (1/2) * ((dt/dx) **2 * ((1/2)*( - v[m-1,n] + v[m,n])*(g * h[m-1,n] + (1/2)*v[m-1,n] **2 - (g * h[m,n] + (1/2) * v[m,n] **2))) - ((1/2) * (v[m-1,n] + v[m,n]) * (g * h[m,n] + (1/2)*v[m,n] **2 - (g * h[m-1,n] + (1/2) * v[m-1,n] **2))))
             else:
-                h[m, n + 1] = h[m,n] - (1/2)*(dt/dx)(h[m+1,n]*v[m+1,n]-h[m-1,n]*v[m-1,n]) + (1/2)*((dt/dx)**2*((1/2)*(v[m+1,n]+v[m,n])*(h[m+1,n]*v[m+1,n]-h[m,n]*v[m,n]))  -(1/2)*(v[m-1,n]+v[m,n])*(h[m,n]*v[m,n] - h[m-1,n]*v[m-1,n]))
-                v[m, n + 1] = 1
-    return h, v
+                h[m, n + 1] = h[m,n] - (1/2) * (dt/dx) * (h[m+1,n] * v[m+1,n] - h[m-1,n] * v[m-1,n]) + (1/2)*((dt/dx) **2 * ((1/2) * (v[m+1,n] + v[m,n]) * (h[m+1,n] * v[m+1,n] - h[m,n] * v[m,n]))  -(1/2) * (v[m-1,n] + v[m,n]) * (h[m,n] * v[m,n] - h[m-1,n] * v[m-1,n]))
+                v[m, n + 1] = v[m,n] - (1/2) * (dt/dx) * (g * h[m+1,n] + (1/2) * v[m+1,n] ** 2 - (g * h[m-1,n] + (1/2) * v[m-1,n] **2)) + \
+                (1/2) * ((dt/dx) **2 * ((1/2)*(v[m+1,n] + v[m,n])*(g * h[m+1,n] + (1/2)*v[m+1,n] **2 - (g * h[m,n] + (1/2) * v[m,n] **2))) - ((1/2) * (v[m-1,n] + v[m,n]) * (g * h[m,n] + (1/2)*v[m,n] **2 - (g * h[m-1,n] + (1/2) * v[m-1,n] **2))))                     
+    return v, h
+
+
 def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
     g = 9.81
     dx = (xf - x0) / M
@@ -140,12 +130,13 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
     return v, h
 
 x_steg = 50
-t_steg = 50000
+t_steg = 10000
 
 #v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
-v, h = non_lin_LF(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
-U = h
-
+#v, h = non_lin_Wendroff(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+#v, h = non_lin_Wendroff_mod2(x_steg, t_steg, tf=5)
+U = np.copy(h)
 
 # First set up the figure, the axis, and the plot element we want to animate
 fig = plt.figure()
@@ -165,7 +156,7 @@ def animate(i):
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=1000, interval=1000, blit=True)
+                               frames=1000, interval=50, blit=True)
 
 # save the animation as an mp4.  This requires ffmpeg or mencoder to be
 # installed.  The extra_args ensure that the x264 codec is used, so that
