@@ -16,13 +16,14 @@ def h_step(x, x0, xf):
     if x <= (x0 + xf) / 2:
         return 2
     else:
-        return 1
+        return 0
 
 def u_initial(x, x0, xf):
     return 0
 
 
 def non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1):
+    #Ganske sikker på at denne er feil! Ikke vits i å bruke
     g = 9.81
     dx = (xf - x0)/M
     dt = (tf - t0)/N
@@ -57,7 +58,7 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     v = np.zeros((M + 1, N + 1))
 
     for m in range(M + 1):
-        h[m, 0] = h_initial(m * dx, x0, xf)
+        h[m, 0] = h_step(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
     print("Første gang \n",h[:, 0])
     for n in range(N):
@@ -129,12 +130,16 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
                 v[m, n + 1] = 1/2 * (v[m + 1, n] + v[m - 1, n]) - 1/2 * ((g * h[m + 1, n] + 1/2 * v[m + 1, n] ** 2) - (g * h[m - 1, n] + 1/2 * v[m - 1, n] ** 2)) * dt / dx
     return v, h
 
-x_steg = 50
+x_steg = 100
 t_steg = 10000
 
 #v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
 #v, h = non_lin_Wendroff(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+
+#Denne funker hittil best
 v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+
+
 #v, h = non_lin_Wendroff_mod2(x_steg, t_steg, tf=5)
 U = np.copy(h)
 
