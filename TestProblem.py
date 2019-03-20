@@ -77,7 +77,6 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
     v = np.zeros((M + 1, N + 1))
 
     for k in range(M):
-        #h[k, 0] = h_step(k * dx, x0, xf)
         h[k,0] = h_step(k*dx,x0,xf)
         v[k, 0] = u_initial(k * dx, x0, xf)
 
@@ -97,8 +96,8 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
 x_steg = 100
 t_steg = 10000
 
-v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)
-#v, h = non_lin_LF(x_steg, t_steg, tf=1)
+#v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)
+v, h = non_lin_LF(x_steg, t_steg, tf=10)
 U = np.copy(h)
 
 #plot hver 1000. rad i h-matrisen mot x:
