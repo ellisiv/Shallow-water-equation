@@ -17,8 +17,25 @@ from matplotlib import animation
 
 def h_nothing(x):
     return 1
+
+
+def h_dupp(x):
+    return 2 + 1.5*np.sin(np.pi * x*2)
+
+
+def h_step(x, x0, xf):
+    if x <= (x0 + xf) / 2:
+        return 2
+    else:
+        return 0
+
+
 def u_initial(x, x0, xf):
-    return 4
+    if x>0.5:
+        return -1
+    else:
+        return 1
+
 
 def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     g = 9.81
@@ -28,16 +45,20 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     v = np.zeros((M + 1, N + 1))
 
     for m in range(M + 1):
-        h[m, 0] = h_nothing(m * dx)
+        #h[m,0] = h_step(m*dx, x0, xf)
+        #h[m, 0] = h_dupp(m * dx)
+        h[m,0] = h_nothing(m*dx)
         v[m, 0] = u_initial(m * dx, x0, xf)
     print("Første gang \n",h[:, 0])
+    va=1
+    ha=1
     for n in range(N):
         for m in range(M + 1):
-            va = v[m, n] #disse kommer fra A-matrisen
-            ha = h[m, n] #Når de er inne i for-løkka er A ikke konstant. kan evt ta de ut og gjøre de konstante
+            #va = v[m, n] #disse kommer fra A-matrisen
+            #ha = h[m, n] #Når de er inne i for-løkka er A ikke konstant. kan evt ta de ut og gjøre de konstante
             if m == 0:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m + 1, n] - h[m + 1, n]) + ha * (v[m + 1, n] + v[m + 1, n])) + 1 / 2 * (dt / dx) **2 * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
-                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m + 1, n] - h[m - 1, n]) + va * (v[m + 1, n] + v[m + 1, n])) + 1 / 2 * (dt / dx) **2 * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
+                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m + 1, n] - h[m + 1, n]) + va * (v[m + 1, n] + v[m + 1, n])) + 1 / 2 * (dt / dx) **2 * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
             elif m == M:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m - 1, n] - h[m - 1, n]) + ha * (-v[m - 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) **2 * ((va ** 2 + ha * g) * (h[m - 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (- v[m - 1, n] - 2 * v[m, n] + v[m - 1, n]))
                 v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m - 1, n] - h[m - 1, n]) + va * (-v[m - 1, n] - v[m - 1, n])) + 1 / 2 * (dt / dx) **2 * (2 * g * va * (h[m - 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (-v[m - 1, n] - 2 * v[m, n] + v[m - 1, n]))
@@ -71,5 +92,5 @@ def animate(i):
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=1000, interval=10, blit=True)
+                               frames=1000, interval=15, blit=True)
 plt.show()

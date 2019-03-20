@@ -40,7 +40,7 @@ def non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1):
             ha = h[m, n]
             if m == 0:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m, n] - h[m + 1, n]) + ha * (v[m, n] + v[m + 1, n])) + 1 / 2 * dt / dx * ((va ** 2 + ha * g) * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + 2 * va * ha * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
-                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m, n] - h[m - 1, n]) + va * (v[m, n] + v[m + 1, n])) + 1 / 2 * dt / dx * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
+                v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m, n] - h[m + 1, n]) + va * (v[m, n] + v[m + 1, n])) + 1 / 2 * dt / dx * (2 * g * va * (h[m + 1, n] - 2 * h[m, n] + h[m + 1, n]) + (g * ha + va ** 2) * (v[m + 1, n] - 2 * v[m, n] - v[m + 1, n]))
             elif m == M:
                 h[m, n + 1] = h[m, n] - 1 / 2 * dt / dx * (va * (h[m, n] - h[m - 1, n]) + ha * (v[m, n] - v[m - 1, n])) + 1 / 2 * dt / dx * ((va ** 2 + ha * g) * (h[m - 1, n] - 2 * h[m, n] + h[m - 1, n]) + 2 * va * ha * (- v[m - 1, n] - 2 * v[m, n] + v[m - 1, n]))
                 v[m, n + 1] = v[m, n] - 1 / 2 * dt / dx * (g * (h[m, n] - h[m - 1, n]) + va * (v[m, n] - v[m - 1, n])) + 1 / 2 * dt / dx * (2 * g * va * (h[m - 1, n] - 2 * h[m, n] + h[m - 1, n]) + (g * ha + va ** 2) * (-v[m - 1, n] - 2 * v[m, n] + v[m - 1, n]))
