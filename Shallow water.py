@@ -133,11 +133,11 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
 x_steg = 100
 t_steg = 10000
 
-v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
+#v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
 #v, h = non_lin_Wendroff(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
 
 #Denne funker hittil best
-#v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+v, h = non_lin_Wendroff_mod(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
 
 
 #v, h = non_lin_Wendroff_mod2(x_steg, t_steg, tf=5)
