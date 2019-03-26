@@ -172,14 +172,3 @@ anim = animation.FuncAnimation(fig, animate, init_func=init,
 
 plt.show()
 
-
-
-
-
-
-
-
-
-
-
-

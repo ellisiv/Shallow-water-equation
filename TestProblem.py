@@ -46,6 +46,7 @@ def u_initial(x, x0, xf):
         return -1
     else:
         return 1
+"""
 
 def u_null(x, x0, xf):
     return 0
@@ -58,11 +59,12 @@ def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     v = np.zeros((M + 1, N + 1))
 
     for m in range(M + 1):
-        h[m,0] = h_step(m*dx, x0, xf)
+        #h[m,0] = h_step(m*dx, x0, xf)
         #h[m, 0] = h_dupp(m * dx)
         #h[m,0] = h_nothing(m*dx)
+        h[m, 0] = h_step(m * dx, x0, xf)
         v[m, 0] = u_initial(m * dx, x0, xf)
-    print("Første gang \n",h[:, 0])
+    print("Første gang \n", h[:, 0])
     va=1
     ha=1
     for n in range(N):
@@ -119,10 +121,10 @@ def plot_h(h):
     x = np.linspace(0, 1, x_steg + 1)
     print('ant ganger gjennom for-løkka')
     plt.figure()
-    while i<=10:
+    while i <= 10:
         print(i)
-        y = h[:,i]
-        plt.plot(x,y,label=i)
+        y = h[:, i]
+        plt.plot(x, y, label=i)
         plt.legend()
         i = i + 1
 #    plt.xlim(0.48,0.52)    
