@@ -29,14 +29,26 @@ def h_step(x, x0, xf):
     else:
         return 0
 
+def h_step_flip(x, x0, xf):
+    if x <= (x0 + xf) / 2:
+        return 0
+    else:
+        return 2
+    
+def h_step_2_0(x, x0, xf):
+    if x <= (x0 + xf) / 2:
+        return 1
+    else:
+        return 2
 
 def u_initial(x, x0, xf):
-    return 0
     if x>0.5:
         return -1
     else:
         return 1
 
+def u_null(x, x0, xf):
+    return 0
 
 def non_lin_Wendroff_mod(M, N, x0=0, xf=1, t0=0, tf=1):
     g = 9.81
