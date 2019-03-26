@@ -26,7 +26,7 @@ def db_h_analytical(x, t, h0):
         if x[i] < -2 * c0 * t:
             y[i] = 0
         if ((x[i] >= - 2 * c0 * t) and (x[i] <= c0 * t)):
-            y[i] = 1 / (9) * (x[i] / t + 2 * c0) ** 2 #fjernet g
+            y[i] = 1 / (9 * g) * (x[i] / t + 2 * c0) ** 2 #fjernet g
         if x[i] > c0 * t:
             y[i] = h0
             
