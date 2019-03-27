@@ -100,7 +100,7 @@ def non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
     h = np.zeros((M + 1, N + 1))
     v = np.zeros((M + 1, N + 1))
 
-    for k in range(M):
+    for k in range(M + 1):
         h[k, 0] = h_step(k * dx, x0, xf)
         v[k, 0] = u_initial(k * dx, x0, xf)
 
