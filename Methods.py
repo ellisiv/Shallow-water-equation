@@ -1,10 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
+from matplotlib import rcParams
+
+rcParams.update({'font.size': 12})
+
+title_font = {'fontname':'Arial', 'size':'14', 'color':'black', 'weight':'normal', 'verticalalignment':'bottom'}# Bottom vertical alignment for more space
+
+
 
 def F_shallow(Q):
     F = np.zeros((len(Q), 2))
-    g = 9.81
+    g = 0
     for i in range(len(F)):
         F[i][0] = Q[i][1]
         if Q[i][0] == 0:
@@ -89,39 +96,99 @@ def initialize_Q(M, N, init):
     return Q
 
 
-def plot_h(h):
+def plot_h_fin(h, method, problem):
     i = 0
-    # i=10
-    x = np.linspace(0, 1, x_steg + 1)
-    print('ant ganger gjennom for-løkka')
+    x_len = len(h[1])
+    x = np.linspace(0, 1, x_len)
     plt.figure()
-    while i <= 11:
+    mult = 100
+    while i <= 10:
         print(i)
-        y = h[i * 1, :]
-        plt.plot(x, y, label=i)
+        y = h[i * mult, :]
+        plt.plot(x, y, label='t = {}'.format('{0:.3f}'.format(i * mult * 10 / t_steg)))
         plt.legend()
         i = i + 1
-    # plt.xlim(0.48,0.52)
-    plt.title('Numerical height')
+    plt.title('Approximation to exact solution with Lax-Friedrich on Dam break problem', **title_font)
     plt.xlabel('x')
     plt.ylabel('h')
+    plt.show()
 
 
-x_steg = 100
-t_steg = 10000
+def Convergence_one_h(h_exact, H, tidspunkt, tf=10):
+    h_exact = h_exact[:, :-1]
+    H = H[:, :-1]
 
-#v, h = non_lin_LF(x_steg, t_steg, tf=10)   #non_lin_LF(M, N, x0=0, xf=1, t0=0, tf=1):
-#v, h = non_lin_Wendroff(x_steg, t_steg, tf=10)  #non_lin_Wendroff(M, N, x0=0, xf=1, t0=0, tf=1)
+    l_exact = len(h_exact)
+    l_H = len(H)
 
-#Denne funker hittil best
-#h, hv = macCormack(initialize_Q(x_steg, t_steg, init="dam-break"), 10 / t_steg, 1 / x_steg, t_steg, x_steg, boundary='inf')
-#h, hv = Lax_Friedrich(initialize_Q(x_steg, t_steg, init='dam-break'), 10/t_steg, 1/ x_steg, t_steg, x_steg, boundary='inf')
-#plot_h(h)
+    dx_fin = 1 / (len(h_exact[1]))
+    dx = 1 / (len(H[1]))
+    dt_fin = 1 / len(h_exact)
+    dt = 1 / len(H)
 
-#v, h = non_lin_Wendroff_mod2(x_steg, t_steg, tf=5)
-#U = np.copy(h)
+    #h_t_exact = h_exact[np.int(l_exact / tf * tidspunkt)]
+    #H_t = H[np.int(l_H / tf * tidspunkt)]
 
-# First set up the figure, the axis, and the plot element we want to animate
+    h_t_exact = h_exact[-1]
+    H_t = H[-1]
+
+    mult_x = np.int(dx / dx_fin)
+
+    error = np.subtract(h_t_exact[::(mult_x)], H_t)
+
+    plottmot = np.linspace(0, 10, len(H[1]))
+    plt.plot(plottmot, H_t, label='num')
+    plt.plot(plottmot, h_t_exact[::(mult_x)], label='"exact"')
+    plt.legend()
+    plt.show()
+    return np.linalg.norm(error, np.inf)
+
+
+def convergence_plot(h_exact, K, metode):
+    r = 0.1
+    tall_som_går_opp_i_900 = [45, 90, 100, 180, 300, 450]
+    antx = tall_som_går_opp_i_900[0]
+    e = np.zeros(K)
+    xer = np.zeros(K)
+
+    for k in range(K):
+        print(k)
+        antt = 1 / r * antx
+        xer[k] = 1 / antx
+        if metode == 'LF':
+            H, v = Lax_Friedrich(initialize_Q(int(antx), int(antt), init='dam-break'), 10/antt, 1 / antx, int(antt), int(antx), boundary='inf')
+            h = H[:-1, :]
+        error = Convergence_one_h(h_exact, h, 0.08, 10)
+        print(error)
+        e[k] = np.abs(error)
+        antx = tall_som_går_opp_i_900[k + 1]
+    plt.loglog(xer, e)
+    plt.show()
+
+
+
+
+
+
+
+#x_steg = 80
+#t_steg = 8000
+
+#h, hv = macCormack(initialize_Q(x_steg, t_steg, init="sinus"), 10 / t_steg, 1 / x_steg, t_steg, x_steg, boundary='periodic')
+#h, hv = Lax_Friedrich(initialize_Q(x_steg, t_steg, init='sinus'), 10/t_steg, 1/ x_steg, t_steg, x_steg, boundary='periodic')
+#h, hv = Lax_Friedrich(initialize_Q(int(90), int(9000), init='dam-break'), 10/9000, 1 / 90, int(9000), int(90), boundary='inf')
+#plot_h_fin(h, method="LF", problem='dam-break')
+
+
+#np.save('height_LF.npy', h)
+#np.save('hv_LF.npy', hv)
+
+U = np.load('height_LF.npy')
+u = U[:-1, :]
+
+convergence_plot(u, 5, 'LF')
+
+"""
 fig = plt.figure()
 ax = plt.axes(xlim=(0, 1), ylim=(-1, 5))
 line, = ax.plot([], [], lw=2)
@@ -139,7 +206,7 @@ def animate(i):
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=1000, interval=50, blit=True)
+                               frames=10000, interval=1, blit=True)
 
 # save the animation as an mp4.  This requires ffmpeg or mencoder to be
 # installed.  The extra_args ensure that the x264 codec is used, so that
@@ -149,5 +216,6 @@ anim = animation.FuncAnimation(fig, animate, init_func=init,
 #anim.save('basic_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 
 plt.show()
+"""
 
 
