@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="988d2257-44c0-42a8-a36b-79a325d8eeb7" name="Default" comment="">
+<<<<<<< HEAD
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Shallow water equation.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
@@ -10,6 +13,7 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fungerende_LF.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shallow water.py" afterPath="$PROJECT_DIR$/Shallow water.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestProblem.py" afterPath="$PROJECT_DIR$/TestProblem.py" />
+>>>>>>> parent of c3c0c46... update på graffi
     </list>
     <ignored path="Shallow water equation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +48,13 @@
       <file leaf-file-name="TestProblem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestProblem.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="3575">
+              <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+=======
             <state relative-caret-position="239">
               <caret line="57" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="146" selection-end-column="12" />
+>>>>>>> parent of c3c0c46... update på graffi
               <folding />
             </state>
           </provider>
@@ -54,13 +63,91 @@
       <file leaf-file-name="fungerende_LF.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fungerende_LF.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="3425">
+              <caret line="146" column="17" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
+              <folding>
+                <marker date="1553706864886" expanded="true" signature="24:83" ph="&quot;&quot;&quot;Created on Tue Mar 19 15:23:53 2019...&quot;&quot;&quot;" />
+                <marker date="1553706864886" expanded="false" signature="84:372" ph="import ..." />
+                <marker date="1553706864886" expanded="true" signature="103:152" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="185:339" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="392:405" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="422:465" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="490:561" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="589:602" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="605:671" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <marker date="1553706864886" expanded="true" signature="729:3416" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="882:1077" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="891:992" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="1159:3399" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="1190:3399" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="1203:1360" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="1383:2039" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="2064:2725" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="2743:3399" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="3464:4921" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="3617:3702" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="3726:4905" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="3757:4905" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="3780:4140" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="4165:4527" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="4545:4905" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="5120:5480" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="5257:5365" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="5724:5767" ph="..." />
+                <marker date="1553706864886" expanded="true" signature="5836:5921" ph="..." />
+              </folding>
+=======
             <state relative-caret-position="808">
               <caret line="161" column="11" selection-start-line="161" selection-start-column="11" selection-end-line="161" selection-end-column="11" />
+              <folding />
+>>>>>>> parent of c3c0c46... update på graffi
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="Methods.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Methods.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="150" column="55" selection-start-line="150" selection-start-column="55" selection-end-line="150" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Analytical_solutions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Analytical_solutions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-494">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="height.npy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/height.npy">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+=======
+>>>>>>> parent of c3c0c46... update på graffi
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -78,7 +165,12 @@
       <list>
         <option value="$PROJECT_DIR$/Shallow water.py" />
         <option value="$PROJECT_DIR$/TestProblem.py" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Methods.py" />
+=======
         <option value="$PROJECT_DIR$/fungerende_LF.py" />
+>>>>>>> parent of c3c0c46... update på graffi
       </list>
     </option>
   </component>
@@ -323,7 +415,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29964328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+=======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14387634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> parent of c3c0c46... update på graffi
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -355,6 +451,77 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Shallow water.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <marker date="1553591230858" expanded="true" signature="8920:9073" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestProblem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3775">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fungerende_LF.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3625">
+          <caret line="145" column="20" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
+          <folding>
+            <marker date="1553706864886" expanded="true" signature="24:83" ph="&quot;&quot;&quot;Created on Tue Mar 19 15:23:53 2019...&quot;&quot;&quot;" />
+            <marker date="1553706864886" expanded="false" signature="84:372" ph="import ..." />
+            <marker date="1553706864886" expanded="true" signature="103:152" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="185:339" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="392:405" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="422:465" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="490:561" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="589:602" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="605:671" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1553706864886" expanded="true" signature="729:3416" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="882:1077" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="891:992" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1159:3399" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1190:3399" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1203:1360" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1383:2039" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="2064:2725" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="2743:3399" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3464:4921" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3617:3702" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3726:4905" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3757:4905" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3780:4140" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="4165:4527" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="4545:4905" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5120:5480" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5257:5365" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5724:5767" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5836:5921" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Methods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/height.npy">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shallow water.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
@@ -365,24 +532,141 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestProblem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="57" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="146" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fungerende_LF.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="161" column="11" selection-start-line="161" selection-start-column="11" selection-end-line="161" selection-end-column="11" />
+<<<<<<< HEAD
+        <state relative-caret-position="1475">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Shallow water.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1553591230858" expanded="true" signature="8920:9073" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shallow water.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <marker date="1553591230858" expanded="true" signature="8920:9073" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/Lib/site-packages/matplotlib/axes/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+=======
+        <state relative-caret-position="239">
+          <caret line="57" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="146" selection-end-column="12" />
+>>>>>>> parent of c3c0c46... update på graffi
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fungerende_LF.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="3425">
+          <caret line="146" column="17" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
+          <folding>
+            <marker date="1553706864886" expanded="true" signature="24:83" ph="&quot;&quot;&quot;Created on Tue Mar 19 15:23:53 2019...&quot;&quot;&quot;" />
+            <marker date="1553706864886" expanded="false" signature="84:372" ph="import ..." />
+            <marker date="1553706864886" expanded="true" signature="103:152" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="185:339" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="392:405" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="422:465" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="490:561" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="589:602" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="605:671" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1553706864886" expanded="true" signature="729:3416" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="882:1077" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="891:992" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1159:3399" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1190:3399" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1203:1360" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="1383:2039" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="2064:2725" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="2743:3399" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3464:4921" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3617:3702" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3726:4905" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3757:4905" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="3780:4140" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="4165:4527" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="4545:4905" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5120:5480" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5257:5365" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5724:5767" ph="..." />
+            <marker date="1553706864886" expanded="true" signature="5836:5921" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h_0_til_01.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestProblem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3575">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/height.npy">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state relative-caret-position="808">
+          <caret line="161" column="11" selection-start-line="161" selection-start-column="11" selection-end-line="161" selection-end-column="11" />
+          <folding />
+>>>>>>> parent of c3c0c46... update på graffi
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/height_LF.npy">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Analytical_solutions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-494">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Methods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="150" column="55" selection-start-line="150" selection-start-column="55" selection-end-line="150" selection-end-column="55" />
+=======
+    <entry file="file://$PROJECT_DIR$/Shallow water.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
           <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+>>>>>>> parent of c3c0c46... update på graffi
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
