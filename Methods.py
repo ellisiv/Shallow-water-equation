@@ -11,7 +11,7 @@ title_font = {'fontname':'Arial', 'size':'14', 'color':'black', 'weight':'normal
 
 def F_shallow(Q):
     F = np.zeros((len(Q), 2))
-    g = 0
+    g = 9.81
     for i in range(len(F)):
         F[i][0] = Q[i][1]
         if Q[i][0] == 0:
@@ -21,24 +21,29 @@ def F_shallow(Q):
     return F
 
 
+def set_boundary(Q, n, boundary):
+    q_n = np.zeros((len(Q[n]) + 2, 2))
+    q_n[1:-1] = Q[n]
+    if boundary == "periodic":
+        q_n[0] = q_n[-3]
+        q_n[-1] = q_n[2]
+    if boundary == "inf":
+        q_n[0][0] = q_n[2][0]
+        q_n[0][1] = q_n[2][1]
+        q_n[-1][0] = 2  # q_n[-3][0]
+        q_n[-1][1] = q_n[-3][1]
+    if boundary == "reflective":
+        q_n[0][0] = q_n[2][0]
+        q_n[0][1] = - q_n[2][1]
+        q_n[-1][0] = q_n[-3][0]
+        q_n[-1][1] = - q_n[-3][1]
+    return q_n
+
+
 def macCormack(Q, dt, dx, N, M, boundary):
     for n in range(N):
         q_p = np.zeros((len(Q[n]) + 1, 2))
-        q_n = np.zeros((len(Q[n]) + 2, 2))
-        q_n[1:-1] = Q[n]
-        if boundary == "periodic":
-            q_n[0] = q_n[-3]
-            q_n[-1] = q_n[2]
-        if boundary == "inf":
-            q_n[0][0] = q_n[2][0]
-            q_n[0][1] = q_n[2][1]
-            q_n[-1][0] = 2#q_n[-3][0]
-            q_n[-1][1] = q_n[-3][1]
-        if boundary == "reflective":
-            q_n[0][0] = q_n[2][0]
-            q_n[0][1] = - q_n[2][1]
-            q_n[-1][0] = q_n[-3][0]
-            q_n[-1][1] = - q_n[-3][1]
+        q_n = set_boundary(Q, n, boundary)
         q_p = q_n[:-1] - (dt / dx) * (F_shallow(q_n[1:]) - F_shallow(q_n[:-1]))
         Q[n + 1, :] = 1 / 2 * (Q[n, :] + q_p[1:]) + dt / (2 * dx) * (F_shallow(q_p[:-1]) - F_shallow(q_p[1:]))
     return Q[:, :, 0], Q[:, :, 1]
@@ -46,21 +51,7 @@ def macCormack(Q, dt, dx, N, M, boundary):
 
 def Lax_Friedrich(Q, dt, dx, N, M, boundary):
     for n in range(N):
-        q_n = np.zeros((len(Q[n]) + 2, 2))
-        q_n[1:-1] = Q[n]
-        if boundary == "periodic":
-            q_n[0] = q_n[-3]
-            q_n[-1] = q_n[2]
-        if boundary == "inf":
-            q_n[0][0] = q_n[2][0]
-            q_n[0][1] = q_n[2][1]
-            q_n[-1][0] = 2#q_n[-3][0]
-            q_n[-1][1] = q_n[-3][1]
-        if boundary == "reflective":
-            q_n[0][0] = q_n[2][0]
-            q_n[0][1] = - q_n[2][1]
-            q_n[-1][0] = q_n[-3][0]
-            q_n[-1][1] = - q_n[-3][1]
+        q_n = set_boundary(Q, n, boundary)
         Q[n + 1] = 1 / 2 * (q_n[2:] + q_n[:-2]) - dt / (2 * dx) * (F_shallow(q_n[2:]) - F_shallow(q_n[:-2]))
     return Q[:, :, 0], Q[:, :, 1]
 
@@ -99,15 +90,17 @@ def initialize_Q(M, N, init):
 def plot_h_fin(h, method, problem):
     i = 0
     x_len = len(h[1])
+    t_len = len(h)
     x = np.linspace(0, 1, x_len)
     plt.figure()
-    mult = 100
+    mult = 20
     while i <= 10:
         print(i)
         y = h[i * mult, :]
-        plt.plot(x, y, label='t = {}'.format('{0:.3f}'.format(i * mult * 10 / t_steg)))
+        plt.plot(x, y, label='t = {}'.format('{0:.3f}'.format(i * mult * 10 / t_len)))
         plt.legend()
         i = i + 1
+    plt.plot(x, h[-1, :], label='tf')
     plt.title('Approximation to exact solution with Lax-Friedrich on Dam break problem', **title_font)
     plt.xlabel('x')
     plt.ylabel('h')
@@ -171,24 +164,25 @@ def convergence_plot(h_exact, K, metode):
 
 
 
-#x_steg = 80
-#t_steg = 8000
+x_steg = 500
+t_steg = 3500
 
-#h, hv = macCormack(initialize_Q(x_steg, t_steg, init="sinus"), 10 / t_steg, 1 / x_steg, t_steg, x_steg, boundary='periodic')
+h, hv = macCormack(initialize_Q(x_steg, t_steg, init="dam-break"), 1 / t_steg, 1 / x_steg, t_steg, x_steg, boundary='inf')
 #h, hv = Lax_Friedrich(initialize_Q(x_steg, t_steg, init='sinus'), 10/t_steg, 1/ x_steg, t_steg, x_steg, boundary='periodic')
-#h, hv = Lax_Friedrich(initialize_Q(int(90), int(9000), init='dam-break'), 10/9000, 1 / 90, int(9000), int(90), boundary='inf')
+#h, hv = Lax_Friedrich(initialize_Q(x_steg, t_steg, init='dam-break'), 1/t_steg, 1 / x_steg, t_steg, x_steg, boundary='inf')
 #plot_h_fin(h, method="LF", problem='dam-break')
 
+print(h)
 
 #np.save('height_LF.npy', h)
 #np.save('hv_LF.npy', hv)
 
-U = np.load('height_LF.npy')
-u = U[:-1, :]
+#U = np.load('height_LF.npy')
+#u = U[:-1, :]
 
-convergence_plot(u, 5, 'LF')
+#convergence_plot(u, 5, 'LF')
 
-"""
+
 fig = plt.figure()
 ax = plt.axes(xlim=(0, 1), ylim=(-1, 5))
 line, = ax.plot([], [], lw=2)
@@ -201,12 +195,12 @@ def init():
 # animation function.  This is called sequentially
 def animate(i):
     x = np.linspace(0, 1, x_steg + 1)
-    line.set_data(x, U[i, :])
+    line.set_data(x, h[i, :])
     return line,
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=10000, interval=1, blit=True)
+                               frames=10000, interval=40, blit=True)
 
 # save the animation as an mp4.  This requires ffmpeg or mencoder to be
 # installed.  The extra_args ensure that the x264 codec is used, so that
@@ -216,6 +210,7 @@ anim = animation.FuncAnimation(fig, animate, init_func=init,
 #anim.save('basic_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 
 plt.show()
-"""
+
+plot_h_fin(h, 'Lax-Friedrich', 'dam-break')
 
 

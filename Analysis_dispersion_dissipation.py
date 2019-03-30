@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 
 theta = np.linspace(-np.pi,np.pi,100)
-x_steg=900
-t_steg=9000
+x_steg=500
+t_steg=5000
 dx=1/(x_steg+1)
 dt=1/(t_steg+1)
 beta = (1/dx)*theta

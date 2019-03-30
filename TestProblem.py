@@ -46,7 +46,7 @@ def u_initial(x, x0, xf):
         return -1
     else:
         return 1
-"""
+
 
 def u_null(x, x0, xf):
     return 0
