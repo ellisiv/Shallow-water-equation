@@ -7,17 +7,18 @@ Created on Wed Mar 27 12:42:30 2019
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 
+rcParams.update({'font.size': 12})
 
 theta = np.linspace(-np.pi,np.pi,100)
-x_steg=500
-t_steg=5000
+x_steg=900
+t_steg=9000
+
 dx=1/(x_steg+1)
 dt=1/(t_steg+1)
 beta = (1/dx)*theta
-#lambd=np.sqrt(4.905)
 lambd=1
-lambd=20
 s = lambd*dt/dx
 y = np.ones(len(theta))
 
@@ -29,7 +30,7 @@ plt.plot(theta,xi, label=r'$\xi$, dissipation' )
 plt.plot(theta, alpha, label =r'$\alpha$, dispersion')
 plt.plot(theta,y, label = 'y = 1', linewidth=0.5)
 plt.legend()
-plt.title('Lax-Friedrich')
+plt.title('Lax-Friedrich', **title_font)
 plt.show()
 
 #Mac-Cormack
@@ -40,5 +41,5 @@ plt.plot(theta, xi_MC, label=r'$\xi$, dissipation')
 plt.plot(theta,alpha_MC, label=r'$\alpha$, dispersion')
 plt.plot(theta,y, label = 'y = 1', linewidth=0.5)
 plt.legend()
-plt.title('MacCormack')
+plt.title('MacCormack', **title_font)
 plt.show()
