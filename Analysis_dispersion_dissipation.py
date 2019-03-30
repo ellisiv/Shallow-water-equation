@@ -17,7 +17,7 @@ dt=1/(t_steg+1)
 beta = (1/dx)*theta
 #lambd=np.sqrt(4.905)
 lambd=1
-#lambd=0
+lambd=20
 s = lambd*dt/dx
 y = np.ones(len(theta))
 
